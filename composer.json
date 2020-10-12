@@ -1,0 +1,13 @@
+{
+    "name": "meinder-a/laravel-forum",
+    "description": "A forum package for Laravel applications",
+    "type": "library",
+    "license": "apache2",
+    "authors": [
+        {
+            "name": "meinder-a",
+            "email": "me@meinder-a.com"
+        }
+    ],
+    "require": {}
+}
