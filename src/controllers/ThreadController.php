@@ -1,6 +1,6 @@
 <?php
 
-namespace MeinderA\LaravelForum\Src\Controllers;
+namespace MeinderA\LaravelForum\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -10,6 +10,20 @@ use Illuminate\Routing\Controller as Controller;
 
 class ThreadController extends Controller
 {
+    public function index(): JsonResponse
+    {
+        $threads = Thread::paginate(10);
+
+        return response()->json($threads);
+    }
+
+    public function show(Request $request): JsonResponse
+    {
+        $thread = Thread::findOrFail($request->thread);
+
+        return response()->json($thread);
+    }
+
     public function store(Request $request): JsonResponse
     {
         $thread = Thread::create($request);
@@ -24,8 +38,9 @@ class ThreadController extends Controller
         return response()->json($thread);
     }
 
-    public function delete(Thread $thread): Response
+    public function destroy(Request $request): Response
     {
+        $thread = Thread::findOrFail($request->thread);
         $thread->delete();
 
         return response(null, 200);

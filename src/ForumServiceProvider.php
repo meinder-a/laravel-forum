@@ -8,6 +8,8 @@ class ForumServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        require __DIR__.'/routes/web.php';
+
         $this->publishes([__DIR__ . '/config/forum.php' => config_path('forum.php')], 'forum-config');
         $this->publishes([__DIR__ . '/database/seeders/' => database_path('seeders')], 'forum-seeders');
         $this->publishes([__DIR__ . '/controllers/' => app_path('Http/Controllers')], 'forum-controllers');
